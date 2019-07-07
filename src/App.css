@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -18,9 +23,15 @@ form button {
 .ingredients_box li {
   list-style-type: none;
 }
+.ingredients_box ul {
+  padding-left: 0px;
+}
 .owned_ingredient {
   font-weight: bold;
 }
 .results ul li {
   list-style-type: none;
+}
+.results ul {
+  padding-left: 0px;
 }

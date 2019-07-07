@@ -47,6 +47,35 @@ componentDidMount() {
     .then(response => response.json())
     .then(responseJson =>  this.getRecipeFromIngredientsById(responseJson));
   }
+  handleFetchRandom = () => {
+    const HEAD = {
+      method: 'GET',
+      headers: {
+      'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+      'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
+      }
+    }
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1';
+    fetch(url, HEAD)
+    .then(response => response.json())
+    .then(responseJson => this.getRandomById(responseJson));
+  }
+  getRandomById(responseJson) {
+    const HEAD = {
+      method: 'GET',
+      headers: {
+      'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+      'X-RapidAPI-Key': 'bc15ad6fe7msh92d4636d10a6e33p1eb30ajsnb776b028d741'
+      }
+    }
+    const id = responseJson.recipes[0].id;
+    let url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information?includeNutrition=true`;
+    fetch(url, HEAD)
+    .then(response => response.json())
+    .then(responseJson => this.setState({
+      fetchResults: responseJson
+    }));
+  }
   getRecipeFromIngredientsById(id) {
     const HEAD = {
       method: 'GET',
@@ -74,6 +103,8 @@ componentDidMount() {
           </h1>
         </header>
         <main>
+          <p>Just looking for something new? Grab a random recipe by clicking the button below!</p>
+          <button onClick={() => this.handleFetchRandom()}>Random Recipe</button>
           <Form getIngredients={this.getIngredientsFromForm}/>
           <Results recipe={this.state.fetchResults} ingredients={this.state.ingredients}/>
         </main>

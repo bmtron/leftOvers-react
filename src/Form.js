@@ -6,9 +6,8 @@ export default class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userIngredients: ['eggs'],
+            userIngredients: [],
             tempIngredients: ''
-            
         }
         
     }
@@ -23,12 +22,12 @@ export default class Form extends Component {
         }
         else if (!dupe) {
             this.setState({
-                userIngredients: [...this.state.userIngredients, this.state.tempIngredients]
+                userIngredients: [...this.state.userIngredients, this.state.tempIngredients],
+                tempIngredients: ''
             })
         }
     }
     onSearchChange(item) {
-        
         this.setState({
            tempIngredients: item
         })
