@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router-dom';
 
 
 export default class Form extends Component {
@@ -52,7 +52,7 @@ export default class Form extends Component {
                     <input id="ing_search" name="ing_search" type="text" placeholder="Eggs, chicken, tortillas, etc." defaultValue="" onChange={(e) => this.onSearchChange(e.target.value)}/>
                     <button onClick={(e) => this.handleAddIngredients(e)}>Add Ingredient</button>
                 </form>
-                <button onClick={() => this.props.getIngredients(this.state.userIngredients)}>Search Ingredients</button>
+                <Link to='/results'><button onClick={() => this.props.getIngredients(this.state.userIngredients)}>Search Ingredients</button></Link>
                 <section className="ingredients_box">
                     <ul>
                         {this.state.userIngredients.map((item, index) => {

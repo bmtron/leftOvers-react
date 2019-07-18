@@ -41,6 +41,7 @@ export default function Results(props) {
                    return <div key={index}>{index + 1}. {item.step}</div>;
                })}</div> : null}
            </div>
+           <button onClick={() => props.history.push('/')}>Go Back</button>
         </div>
     )
 }
